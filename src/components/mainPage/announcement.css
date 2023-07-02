@@ -1,0 +1,65 @@
+.announcement_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.announcement_card {
+    position: absolute;
+    width: 400px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 8px;
+    margin-top: 400px;
+    margin-right: 600px;
+    padding: 20px;
+
+}
+
+.announcement_photo {
+    display: flex;
+    align-items: baseline;
+    cursor: pointer;
+}
+
+.announcement_description {
+    display: flex;
+    flex-direction: column;
+}
+
+.announcement_input {
+    background-color: #F7F6F9;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 12px;
+    margin: 5px 0;
+    outline: none;
+    cursor: pointer;
+    width: 360px;
+}
+
+.announcement_input:placeholder-shown {
+    color: #9CA4AB;
+}
+
+.announcement_btn {
+    background-color: #F7F6F9;
+    color: #9CA4AB;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 16px;
+    border: none;
+    width: 280px;
+    margin: 10px auto;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.announcement_btn:hover {
+    background-color: #5D5FEF;
+    ;
+    color: #fff;
+}

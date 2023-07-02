@@ -1,0 +1,19 @@
+.input_error,
+select.input_error {
+    color: #ec070b;
+    box-sizing: border-box;
+    padding: 0 0 6px;
+    outline: none;
+    border-bottom: 0.5px solid #C0C0C0;
+    cursor: pointer;
+    width: 230px;
+    height: 30px;
+    margin-bottom: 10px;
+    border: none;
+    border-bottom: 0.5px solid #ec070b;
+}
+
+.input_error_text {
+    font-size: 10px;
+    color: #d0373a;
+}

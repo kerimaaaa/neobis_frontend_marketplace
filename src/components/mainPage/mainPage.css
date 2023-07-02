@@ -1,0 +1,76 @@
+.mainpage_container {
+    width: 100%;
+    height: 100vh;
+    background-color: #f0f0f0;
+    position: relative;
+}
+.modal_window {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(3px);
+}
+
+.mainpage_head_container {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.mainpage_logo_container {
+    margin: 30px;
+    display: flex;
+    padding-left: 20px;
+    cursor: pointer;
+}
+
+.mainpage_logo {
+    width: 44px;
+    height: 44px;
+
+}
+
+.mainpage_title {
+    font-size: 20px;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+.mainpage_info {
+    display: flex;
+    margin: 30px;
+    padding-right: 20px;
+    cursor: pointer;
+}
+
+.mainpage_username {
+    margin-right: 10px;
+    padding-top: 8px;
+}
+
+.mainpage_user{
+    text-align: end;
+    font-size: 18px;
+    font-weight: 500;
+    text-decoration: none;
+}
+.mainpage_btn_contain{
+    margin-right: 20px;
+    margin-top: 15px;
+}
+.mainpage_btn {
+    background: #5458EA;
+    border-radius: 80px;
+    padding: 15px 20px;
+    border: none; 
+    color: #fff;
+    transition: 0.5s;
+    cursor: pointer;
+}
+.mainpage_btn:hover{
+    background-color: #242ae6;
+}
