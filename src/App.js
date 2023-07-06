@@ -21,7 +21,7 @@ function App() {
         <Route path='/setpassword' element = {<SetPassword/>}/>
         <Route path='/twosetpassword' element = {<TwoSetPassword/>}/>
         <Route path='/profile' element = {<Profile/>}/>
-        <Route path='/setNumber' element = {<SetNumber/>} />
+        <Route path='/setnumber' element = {<SetNumber/>} />
         <Route path='/favorite' element = {<Favorites/>} />
         <Route path='/myproducts' element = {<MyProducts/>} />
         <Route path='/mainpage' element = {<MainPage/>} />

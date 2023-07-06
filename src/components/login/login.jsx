@@ -5,22 +5,42 @@ import CustomInput from "../customInput/customInput";
 import { EyeIcon, Eyes } from '@heroicons/react/24/solid';
 import '../style/style.css';
 import logo from '../../images/logo.svg';
-//import { loginSchema } from "../../schemas/schema";
+import { loginSchema } from "../../schemas/schema";
 import { AuthContext } from "../../interceptors/authProvider";
 import { instance } from "../../API/api";
+import { useAxios } from "../../interceptors/interceptors";
 
 
 
 
 const Login = () => {
   const [passwordShown, setPasswordShown] = useState(false);
+  const { isLogged } = useContext(AuthContext);
+  const [loginForm, setLoginForm] = useState(false);
+  const [protectedData, setProtectedData] = useState('');
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const api = useAxios();
+  const handleAuthButtonClick = () => {
+    if (!isLogged) {
+      setLoginForm(true);
+      localStorage.removeItem('access-token');
+      localStorage.removeItem('refresh-token');
+    }
+  }
 
-
+  const handleGetProtectedData = async () => {
+    try {
+      const response = await api.get('/protected');
+      setProtectedData(response.data);
+    }
+    catch (err) {
+      console.log('Error: ', err);
+    }
+  }
   const onSubmit = async () => {
     try {
-      const res = await instance.post('token/', username, password)
+      const res = await api.post('token/', username, password)
         .then(response => {
           localStorage.setItem('users', JSON.stringify(response.data))
           localStorage.setItem('access-token', res.data.accessToken);
@@ -33,12 +53,7 @@ const Login = () => {
 
     }
   }
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value)
-  }
-  const handleUserChange = (e) => {
-    setUsername(e.target.value)
-  }
+  
   const togglePassword = (e) => {
     e.preventDefault()
     setPasswordShown(!passwordShown);
@@ -53,9 +68,9 @@ const Login = () => {
       <Formik
         initialValues={{ firstname: "", password: "", }}
         onSubmit={onSubmit}
-        //validationSchema={loginSchema}
+        validationSchema={loginSchema}
       >
-        {({ isSubmitting }) => (
+        {({ isSubmitting, handleChange }) => (
           <Form className="form_container">
 
             <CustomInput
@@ -63,15 +78,13 @@ const Login = () => {
               id="firstname"
               type="text"
               placeholder="Имя пользователя"
-              value ={username}
-              onChange={(e) => handleUserChange(e)}
+              onChange={handleChange}
             />
             <CustomInput
               name="password"
               type={passwordShown ? "text" : "password"}
               placeholder="Пароль"
-              value ={password}
-              onChange={(e) => handlePasswordChange(e)}
+              onChange={handleChange}
             />
             <button className='eye' onClick={togglePassword}>
               <EyeIcon

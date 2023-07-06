@@ -4,7 +4,7 @@ import logo from '../../images/logo.svg';
 import './mainPage.css';
 import { Link, useParams } from "react-router-dom";
 import red_heart from '../../images/red_heart.svg'
-import { instanceProduct } from "../../API/api";
+import { getProducts } from "../../API/api";
 import Announcement from "./announcement";
 
 
@@ -12,15 +12,14 @@ const MainPage = ({ profileFinal }) => {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
     const [openModal, setOpenModal] = useState(false)
+    
     useEffect(() => {
-        // Fetch meal data based on meal ID from the API using Axios
-        const getProduct = async () => {
-            instanceProduct.get(`product/${id}`)
-                .then(response => setProduct(response.data.products[0]))
-                .catch(error => console.log(error));
-        };
-        getProduct();
-    }, [id]);
+        getProducts()
+          .then(response => {
+            setProduct(response)
+          })
+      }, []);
+    
 
     return (
         <div className="mainpage_container">

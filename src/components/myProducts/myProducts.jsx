@@ -49,7 +49,7 @@ const MyProducts = () => {
             </div>
             <div className="profile">
                 <div className="profile_header">
-                    <Link to="/" className="profile_arrow_left">
+                    <Link to="/mainpage" className="profile_arrow_left">
                         <ArrowLeftIcon
                             className=""
                             width={24}

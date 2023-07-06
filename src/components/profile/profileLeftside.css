@@ -30,10 +30,12 @@
 .profile_ava_icon{
     width: 60px;
     height: 60px;
+    cursor: pointer;
 }
 .profile_username{
     margin-left: 5px;
     margin-top: 5px;
+    cursor: pointer;
 }
 .profile_username h3{
     color: #494949;

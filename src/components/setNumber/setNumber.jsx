@@ -5,9 +5,10 @@ import { Form, Formik, useFormik } from "formik";
 import './setNumber.css';
 import { phoneNumberSchema } from "../../schemas/schema";
 import codeIcon from '../../images/codeIcon.svg'
+import '../profile/profile.css'
 
 
-const SetNumber = () => {
+const SetNumber = ({ closeModal }) => {
     const [code, setCode] = useState(false);
     const { resetForm } = useFormik({
     });
@@ -24,7 +25,7 @@ const SetNumber = () => {
     return (
 
         <div className="number_container">
-            <div className="number_content">
+            <div className="number_content modal_window ">
                 {code ? (
                     <>
                         <div>
@@ -52,7 +53,7 @@ const SetNumber = () => {
                                             disabled={isSubmitting}
                                             type="submit"
                                             className="submit_btn"
-
+                                            onClick={() => closeModal(false)}
                                         >
                                             ОК
                                         </button>

@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import profile_icon from "../../images/profile_icon.svg";
 import ProfileLeftside from "./profileLeftside";
 import { Link } from "react-router-dom";
-import { Form, Formik } from "formik";
-import CustomInput from "../customInput/customInput";
 import { ArrowLeftIcon } from '@heroicons/react/24/solid';
 import { Dialog } from 'primereact/dialog';
 import { Button } from "primereact/button"
 import { InputText } from 'primereact/inputtext';
 import Avatar from "react-avatar-edit";
 import { useFormik } from "formik";
+import SetNumber from "../setNumber/setNumber";
 
 
 
@@ -19,6 +18,7 @@ const Profile = () => {
     const [src, setSrc] = useState(false);
     const [profile, setProfile] = useState([]);
     const [pview, setPview] = useState(false);
+    const [openModal, setOpenModal] = useState(false)
 
     const profileFinal = profile.map((item) => item.pview);
 
@@ -62,7 +62,7 @@ const Profile = () => {
                 <div className="profile_header">
                     <Link to="/mainpage" className="profile_arrow_left">
                         <ArrowLeftIcon
-                            className=""
+                            className="ArrowLeftIcon"
                             width={24}
                             height={24} /><span>Назад</span></Link>
 
@@ -76,6 +76,7 @@ const Profile = () => {
                         className="ava_icon"
                     />
                     <p className="profile_photo_choose" onClick={() => setImageCrop(true)}> Выбрать фотографию </p>
+
                     <Dialog
                         visible={imageCrop}
                         header={() => {
@@ -84,20 +85,24 @@ const Profile = () => {
                             </p>
                         }}
                         onHide={() => setImage(false)}
-                    >
-                        <div className="profile_avatar">
-                            <Avatar
-                                width={300}
-                                height={200}
-                                onCrop={onCrop}
-                                onClose={onClose}
-                                src={src}
-                            />
-                            <div className="profile_ava_btn">
-                                <Button onClick={saveCropImage}
-                                    label="save"
-                                    icon="pi pi-check"
+                        className="profile_dialog_container" >
+                        <div className="avatar_container">
+
+                            <div className="profile_avatar">
+                                <Avatar
+                                    width={300}
+                                    height={200}
+                                    onCrop={onCrop}
+                                    onClose={onClose}
+                                    src={src}
                                 />
+                                <div className="profile_ava_btn">
+                                    <Button onClick={saveCropImage}
+                                        label="save"
+                                        icon="pi pi-check"
+                                        className="ava_save_btn"
+                                    />
+                                </div>
                             </div>
                         </div>
                     </Dialog>
@@ -137,7 +142,7 @@ const Profile = () => {
                         <input
                             id="birthdate"
                             type="text"
-                            placeholder="Краткое описание"
+                            placeholder="Дата рождения"
                             value={values.birthdate}
                             onChange={handleChange}
                             onBlur={handleBlur}
@@ -151,8 +156,11 @@ const Profile = () => {
                             value={values.phoneNumber}
                             onChange={handleChange}
                             onBlur={handleBlur}
+                            onClick={() => { setOpenModal(true) }}
                             className="profile_input"
                         />
+                        {openModal && <SetNumber closeModal={setOpenModal} />}
+
                         <input
                             id="email"
                             type="email"
@@ -162,7 +170,11 @@ const Profile = () => {
                             onBlur={handleBlur}
                             className="profile_input"
                         />
-
+                        <button
+                            disabled={isSubmitting}
+                            type="submit"
+                            className='profile_save_btn'
+                        >Далее</button>
                     </form>
                 </div>
             </div>

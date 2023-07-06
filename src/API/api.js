@@ -8,14 +8,7 @@ export const instance = axios.create({
         // 'Authorization': `Bearer ${token}`
     }
 })
-export const instanceProduct = axios.create({
-    baseURL: 'http://165.22.86.200:8000/',
-    headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Headers': 'privatekey'
-        // 'Authorization': `Bearer ${token}`
-    }
-})
+
 
 export const getapi = {
     setToken(token) {
@@ -46,4 +39,19 @@ export const getapi = {
 
 }
 
+export const instanceProduct = axios.create({
+    baseURL: 'http://165.22.86.200:8000/',
+    headers: {
+        'Content-Type': 'application/json',
+    }
+})
 
+export const getProducts = async () => {
+    try {
+      const res = await instanceProduct.get('product/')
+  
+      return res.data
+    } catch(e) {
+    return console.error(e)
+    }
+  }
